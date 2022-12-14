@@ -128,7 +128,7 @@ if(is.null(dom$net))
 
 compile.gRv<-function(object, ...)
 	{
-	if(!is.null(object$net)) warning(object," already compiled")
+	if(!is.null(object$net)) warning("domain already compiled")
 # if any nodes are missing cptables, provide dummy table
 	for(n in setdiff(object$nodes,names(object$cptables))) {
 		vpa<-c(n,object$parents[[n]])
