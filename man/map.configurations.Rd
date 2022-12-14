@@ -13,7 +13,6 @@
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 demo('chest',package="gRaven",echo=FALSE)
-compile(chest)
 set.finding(chest,'asia','yes')
 set.finding(chest,'dysp','no')
 map.configurations(chest,c('lung','bronc'),0.0001)
