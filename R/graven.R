@@ -41,7 +41,7 @@ add.node<-function (dom, n, states, subtype)
                 numeric = "numbered", logical = "boolean")
     }
     if (n %in% dom$nodes) 
-        stop(n, " already in ", dom, "\n")
+        stop(n, " already in domain\n")
     dom$nodes <- c(dom$nodes, n)
     dom$states <- c(dom$states, structure(list(states),names=n))
     dom$parents <- c(dom$parents, structure(list(NULL),names=n))
@@ -49,7 +49,7 @@ add.node<-function (dom, n, states, subtype)
 
 add.edge<-function(dom,child,parent)
 {
-if((!child%in%dom$nodes)||any(!parent%in%dom$nodes)) stop(child,'',parent,' not all already in ',dom,'\n')
+if((!child%in%dom$nodes)||any(!parent%in%dom$nodes)) stop(child,'',parent,' not all already in domain\n')
 dom$parents[[child]]<-c(dom$parents[[child]],parent)
 dom$cptables[[child]]<-NULL
 }
@@ -296,13 +296,12 @@ map.configurations<-function (dom, nodes, pmin)
     }
     else {
         z <- querygrain(dom$net, nodes, "joint", exclude = FALSE)
-        zz<-as.data.frame.table(z,stringsAsFactors=FALSE)
-        d<-zz[c(nodes,'Freq')]
+                d<-as.data.frame.table(z,stringsAsFactors=FALSE)
+        for(n in nodes) storage.mode(d[[n]])<-storage.mode(dom$states[[n]])
         names(d)<-c(nodes,'Prob')
-        for(n in nodes) storage.mode(zz[[n]])<-storage.mode(dom$states[[n]])
         o <- order(d$Prob, decreasing = TRUE)
         d <- d[o, ]
-	  d<-d[d>pmin]
+	  d[d$Prob>0.001,]
         structure(d, row.names = 1:nrow(d))
     }
 }
