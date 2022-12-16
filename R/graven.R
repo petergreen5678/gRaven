@@ -301,7 +301,7 @@ map.configurations<-function (dom, nodes, pmin)
         names(d)<-c(nodes,'Prob')
         o <- order(d$Prob, decreasing = TRUE)
         d <- d[o, ]
-	  d[d$Prob>0.001,]
+	d<-d[d$Prob>pmin,]
         structure(d, row.names = 1:nrow(d))
     }
 }
