@@ -13,7 +13,7 @@ name of a gRaven domain
 logical, should constant be returned on log scale?
 }
 }
-\value{numeric, the value of the normalisation constant (or its logarithm)}
+\value{numeric, the value of the normalisation constant (or its logarithm). If no evidence has been entered, the constant is defined as 1.}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 yn <- c("yes","no")
