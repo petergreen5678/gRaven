@@ -256,6 +256,8 @@ get.normalization.constant<-function(dom,log=FALSE)
 			dom$net$evidence<-NULL
 			}
 		p<-pEvidence(dom$net,evidence=dom$net$cache)		
+		} else if(is.null(dom$net$evidence)) {
+		p<-1
 		} else {
 		if(dom$net$isPropagated) 
 			p<-pEvidence(dom$net) else
