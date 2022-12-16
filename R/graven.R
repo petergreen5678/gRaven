@@ -296,7 +296,8 @@ map.configurations<-function (dom, nodes, pmin)
     }
     else {
         z <- querygrain(dom$net, nodes, "joint", exclude = FALSE)
-                d<-as.data.frame.table(z,stringsAsFactors=FALSE)
+        d<-as.data.frame.table(z,stringsAsFactors=FALSE)
+	d<-d[,c(nodes,Freq)]
         for(n in nodes) storage.mode(d[[n]])<-storage.mode(dom$states[[n]])
         names(d)<-c(nodes,'Prob')
         o <- order(d$Prob, decreasing = TRUE)
