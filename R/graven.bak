@@ -269,7 +269,10 @@ get.normalization.constant<-function(dom,log=FALSE)
 	if(log) log(p) else p
 	}
 
-get.nodes<-function(dom) dom$nodes
+get.nodes<-function(dom)
+{
+dom$nodes
+}
 
 get.parents<-function(dom,n)
 {
