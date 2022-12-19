@@ -275,37 +275,7 @@ get.parents<-function(dom,n)
 {
 dom$parents[[n]]
 }
-
-map.configurations<-function (dom, nodes, pmin) 
-{
-    if(!dom$net$isPropagated) propagate(dom)
-    if (is.null(getOption("mapcon")) || getOption("mapcon") == 
-        "sim") {
-        n <- 10000
-        sg <- simulate.grain(dom$net, n)
-        tz <- table(sg[as.vector(nodes)])
-        w <- which(as.array(tz) > pmin * n, arr.ind = TRUE)
-        o <- order(tz[w], decreasing = TRUE)
-        wo <- w[o, , drop = FALSE]
-        sw <- wo
-        for (v in nodes) sw[, v] <- dom$states[[v]][wo[,v]]
-        zz <- cbind(sw, tz[w[o, , drop = FALSE]]/n)
-        dimnames(zz) <- list(NULL, c(nodes, "Prob"))
-        as.data.frame(zz)
-    }
-    else {
-        z <- querygrain(dom$net, nodes, "joint", exclude = FALSE)
-        d<-as.data.frame.table(z,stringsAsFactors=FALSE)
-	d<-d[,c(nodes,'Freq')]
-        for(n in nodes) storage.mode(d[[n]])<-storage.mode(dom$states[[n]])
-        names(d)<-c(nodes,'Prob')
-        o <- order(d$Prob, decreasing = TRUE)
-        d <- d[o, ]
-	d<-d[d$Prob>pmin,]
-        structure(d, row.names = 1:nrow(d))
-    }
-}
-
+    
 simulate.gRv <- function(object, nsim = 1, seed = NULL, ...)
 	{
 	simulate.grain(object$net, nsim = nsim, seed = NULL, ...)   
