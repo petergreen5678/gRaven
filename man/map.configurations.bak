@@ -10,7 +10,7 @@
 }
 \details{Emulates function of the same name in the \code{RHugin} package by calls to \code{gRain} functions}
 \value{a data.frame with one column for each node in \code{nodes}. Each row contains a most probable configuration. The final column of the data.frame (\code{Prob}) gives the probability of the configuration.}
-\author{Therese Graversen, \email{theg@itu.dk}}
+\author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 demo('chest',package="gRaven",echo=FALSE)
 set.finding(chest,'asia','yes')
