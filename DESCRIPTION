@@ -1,7 +1,7 @@
 Package: gRaven
 Type: Package
-Title: Wrappers for the gRain Package to Emulate some RHugin Functionality
-Version: 1.0.8
+Title: Bayes nets: 'RHugin' emulation with 'gRain'
+Version: 1.0.9
 Date: 2022-12-20
 Author: Peter Green
 Maintainer: Peter Green <P.J.Green@bristol.ac.uk>
