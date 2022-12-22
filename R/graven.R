@@ -147,7 +147,6 @@ check.compiled<-function(dom)
 	if(!all(dom$nodes%in%names(dom$cptables))) {
 		if(is.null(dom$cptables)) dom$cptables<-list()
 		for(n in dom$nodes) if(is.null(dom$cptables[[n]])) {set.table(dom,n,1)} #; cat('set table',dom,n,'\n')}
-		dom<-get(dom,envir=.GlobalEnv)
 		dom$net<-NULL
 	}
 	if(is.null(dom$net)) {compile.gRv(dom); cat('compiled',dom,'\n')}
