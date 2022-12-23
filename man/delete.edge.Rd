@@ -13,7 +13,7 @@ Delete edge from a gRaven domain
 \value{a NULL value is invisibly returned.}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
-demo('chest',package="gRaven",echo=FALSE)
+demo("chest",package="gRaven",echo=FALSE)
 get.nodes(chest)
 chest$states
 sapply(get.nodes(chest),function(x) get.parents(chest,x))

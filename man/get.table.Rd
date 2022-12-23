@@ -19,5 +19,5 @@ add.node(chest,"tub",c("yes","no"))
 add.edge(chest,"tub","asia")
 compile(chest)
 chest
-get.table(chest,'asia')
+get.table(chest,"asia")
 }

@@ -1,4 +1,17 @@
-get.states<-function(dom,node) dom$states[[node]]
+# edits to allow logical states
+
+get.states<-function (dom, node=dom$nodes)
+{
+# assuming logicals coded as 0 and 1 in the order specified in add.node (differs from Hugin?)
+if(length(node)==1)
+{
+x<-dom$states[[node]]
+y<-attr(x,'logical')
+if(is.null(y)) x else y[x+1]
+}
+else
+sapply(node,function(x) get.states(dom,x))
+}
 
 get.children<-function(dom,nodes)
 {

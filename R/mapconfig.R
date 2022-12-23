@@ -25,7 +25,7 @@ map.configurations <-function (dom, nodes, pmin)
   findings <- list()
   for(j in seq_along(nodes)) 
   {
-    states[[j]] <- dom$states[[nodes[j]]]
+    states[[j]] <- get.states(dom,nodes[j])
     findings[[j]] <- .getfinding(dom,nodes[j])
   }
   
@@ -44,9 +44,10 @@ map.configurations <-function (dom, nodes, pmin)
     sg <- simulate.grain(dom$net, n)
     sg <- subset(sg, select = nodes) 
     
-    ## Change state values from factors to character
+    ## Change state values from factors to provided state values
     for(node in nodes) {
-      sg[,node]<-dom$states[[node]][as.integer(sg[,node])]
+            sg[, node] <- get.states(dom,node)[as.integer(sg[, 
+                node])]
     }
     
     ## merge onto already found configurations, if any

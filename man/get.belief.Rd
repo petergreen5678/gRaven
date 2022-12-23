@@ -11,12 +11,12 @@
 \value{Vector of marginal probabilities}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
-demo('chest',package="gRaven",echo=FALSE)
+demo("chest",package="gRaven",echo=FALSE)
 compile(chest)
 chest
 set.finding(chest,"asia","yes")
 set.finding(chest,"dysp","no")
 propagate(chest)
-get.belief(chest,'asia')
-get.belief(chest,'tub')
+get.belief(chest,"asia")
+get.belief(chest,"tub")
 }

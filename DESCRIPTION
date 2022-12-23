@@ -1,14 +1,14 @@
 Package: gRaven
 Type: Package
 Title: Bayes Nets: 'RHugin' Emulation with 'gRain'
-Version: 1.0.12
-Date: 2022-12-21
+Version: 1.0.13
+Date: 2022-12-22
 Authors@R: c(person("Peter", "Green", role = c("aut", "cre"), email = "P.J.Green@bristol.ac.uk"),
   person("Therese", "Graversen", role = "ctb", email = "theg@itu.dk"),
   person("Soren", "Hojsgaard", role = "ctb", email = "sorenh@math.aau.dk"))
 Maintainer: Peter Green <P.J.Green@bristol.ac.uk>
 Description: Wrappers for functions in the 'gRain' package to emulate some 'RHugin' 
-  functionality, allowing the building of Bayesian networks incrementally, through
+  functionality, allowing the building of discrete Bayesian networks incrementally, through
   adding nodes, edges and conditional probability tables, the setting of evidence, 
   both 'hard' (boolean) or 'soft' (likelihoods), and querying marginal probabilities
   and normalizing constants. Computations will typically not be so fast as they are

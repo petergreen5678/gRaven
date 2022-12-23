@@ -1,9 +1,9 @@
 print.gRv<-function(x, ...)
 {
-      cat('domain with slots:',names(x),'\n')
-      cat(length(x$nodes),'nodes:',x$nodes,fill=60)
-      cat(sum(sapply(x$parents,length)),'edges\n')
-      for(n in x$nodes) if(length(x$parents[[n]])>0) cat('  ',x$parents[[n]],'->',n,'\n')
+      cat("domain with slots:",names(x),"\n")
+      cat(length(x$nodes),"nodes:",x$nodes,fill=60)
+      cat(sum(sapply(x$parents,length)),"edges\n")
+      for(n in x$nodes) if(length(x$parents[[n]])>0) cat("  ",x$parents[[n]],"->",n,"\n")
       invisible(NULL)
 }
 
@@ -15,9 +15,9 @@ hugin.domain<-function ()
 	e
 }
 
-clone.domain<-function(dom1)
+clone.domain<-function(dom)
 	{
-	dom2<-rlang::env_clone(dom1)
+	dom2<-rlang::env_clone(dom)
 	class(dom2)<-c("gRv","environment")
 	dom2
 	}
@@ -34,22 +34,30 @@ add.node<-function (dom, n, states, subtype)
     if (missing(states)) {
         if (subtype == "boolean") 
             states <- c(0, 1)
+		attr(states,"logical")<-c(FALSE,TRUE)
     }
     else {
         if (missing(subtype)) 
             subtype <- switch(mode(states), character = "labeled", 
                 numeric = "numbered", logical = "boolean")
     }
+    if(mode(states)=="logical")  
+		{
+		attr(states,"logical")<-states
+		states[] <- c(0, 1)
+		}
     if (n %in% dom$nodes) 
         stop(n, " already in domain\n")
+    if(any(duplicated(states))) stop("states must be distinct")
+    
     dom$nodes <- c(dom$nodes, n)
-    dom$states <- c(dom$states, structure(list(states),names=n))
-    dom$parents <- c(dom$parents, structure(list(NULL),names=n))
+    dom$states <- c(dom$states, structure(list(states), names = n))
+    dom$parents <- c(dom$parents, structure(list(NULL), names = n))
 }
 
 add.edge<-function(dom,child,parent)
 {
-if((!child%in%dom$nodes)||any(!parent%in%dom$nodes)) stop(child,'',parent,' not all already in domain\n')
+if((!child%in%dom$nodes)||any(!parent%in%dom$nodes)) stop(child,"",parent," not all already in domain\n")
 dom$parents[[child]]<-c(dom$parents[[child]],parent)
 dom$cptables[[child]]<-NULL
 }
@@ -102,11 +110,11 @@ for(i in 1:lk)
         if(i==1) df<-data.frame(w) else df<-cbind(df,w)
 }
 df<-cbind(df,as.vector(Freq))
-names(df)<-c(vpa,'Freq')
+names(df)<-c(vpa,"Freq")
 df
 }
 
-set.table<-function(dom,n,tab=1,type='cpt')
+set.table<-function(dom,n,tab=1,type="cpt")
 {
 if(is.data.frame(tab)) Freq<-tab$Freq else Freq<-as.vector(tab)
 if(is.null(dom$net))
@@ -146,10 +154,10 @@ check.compiled<-function(dom)
 {
 	if(!all(dom$nodes%in%names(dom$cptables))) {
 		if(is.null(dom$cptables)) dom$cptables<-list()
-		for(n in dom$nodes) if(is.null(dom$cptables[[n]])) {set.table(dom,n,1)} #; cat('set table',dom,n,'\n')}
+		for(n in dom$nodes) if(is.null(dom$cptables[[n]])) {set.table(dom,n,1)} #; cat("set table",dom,n,"\n")}
 		dom$net<-NULL
 	}
-	if(is.null(dom$net)) {compile.gRv(dom); cat('compiled',dom,'\n')}
+	if(is.null(dom$net)) {compile.gRv(dom); cat("compiled",dom,"\n")}
 }
 
 set.finding<-function(dom, node, finding)
@@ -200,24 +208,24 @@ if(2%in%type) for(i in seq_along(dom$net$cache))
 {
 	node<-names(dom$net$cache)[i]
 	finding<-dom$net$cache[[i]]
-	names(finding)<-dom$states[[node]]
+	names(finding)<-get.states(dom,node)
 	if(node%in%nodes) if(namestates) {
- 	cat(paste0(node,':'),'cache\n')
+ 	cat(paste0(node,":"),"cache\n")
 	print(finding)
 	} else { 
-	cat(paste0(node,':'),finding,'cache\n')
+	cat(paste0(node,":"),finding,"cache\n")
 	}
 }
 if(1%in%type) for(i in seq_along(dom$net$evi$evi))
 {
 	node<-names(dimnames(dom$net$evi$evi[[i]]))
 	finding<-as.vector(dom$net$evi$evi[[i]])
-	names(finding)<-dom$states[[node]]
+	names(finding)<-get.states(dom,node)
 	if(node%in%nodes) if(namestates) {
- 	cat(paste0(node,':'),'evid\n')
+ 	cat(paste0(node,":"),"evid\n")
 	print(finding)
 	} else { 
-	cat(paste0(node,':'),finding,'evid\n')
+	cat(paste0(node,":"),finding,"evid\n")
 	}
 }
 }
@@ -292,8 +300,8 @@ list.domains<-function (print = TRUE)
 	if(print) cat(domains,fill=60)
 	for(v in lsa) if(is.list(get(v))&&"domains"%in%names(get(v))) 
 		{
-		if(print) cat(paste0(' ',v,'$domains$'),names(get(v)$domains),'\n')
-		domains<-c(domains,paste0(v,'$domains$',names(get(v)$domains)))
+		if(print) cat(paste0(" ",v,"$domains$"),names(get(v)$domains),"\n")
+		domains<-c(domains,paste0(v,"$domains$",names(get(v)$domains)))
 		}
 invisible(domains)
 }

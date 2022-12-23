@@ -18,12 +18,12 @@ chest2
 set.finding(chest,"asia","yes")
 set.finding(chest,"dysp","no")
 propagate(chest)
-get.belief(chest,'asia')
-get.belief(chest,'tub')
+get.belief(chest,"asia")
+get.belief(chest,"tub")
 
 propagate(chest2)
-get.belief(chest2,'asia')
-get.belief(chest2,'tub')
+get.belief(chest2,"asia")
+get.belief(chest2,"tub")
 
 list.domains()
 }

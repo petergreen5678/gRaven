@@ -6,8 +6,8 @@
 \arguments{
   \item{dom}{name of a gRaven domain}
   \item{n}{a character string containing the name of the node to be added}
-  \item{states}{a vector listing the states for this node}
-  \item{subtype}{a character string, 'labeled', 'numbered' or'boolean'}
+  \item{states}{a character, numeric or logical vector listing the states for this node}
+  \item{subtype}{a character string, 'labeled', 'numbered' or 'boolean'}
 }
 \details{Emulates function of the same name in the \code{RHugin} package by calls to \code{gRain} functions}
 \value{a NULL value is invisibly returned.}

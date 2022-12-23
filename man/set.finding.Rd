@@ -2,8 +2,8 @@
 \alias{set.finding}
 \alias{retract}
 \alias{get.finding}
-\title{Set, retract and insspect findings}
-\description{Set, retract and insspect findings}
+\title{Set, retract and inspect findings}
+\description{Set, retract and inspect findings}
 \usage{
 set.finding(dom, node, finding)
 retract(dom, nodes=dom$nodes)
