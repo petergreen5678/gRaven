@@ -5,6 +5,7 @@
 \title{\packageTitle{gRaven}}
 \description{\packageDescription{gRaven}}
 \author{
+\packageAuthor{gRaven}
 Maintainer: \packageMaintainer{gRaven}
 }
 \examples{
