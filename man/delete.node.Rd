@@ -3,10 +3,10 @@
 \title{Delete node from a gRaven domain}
 \description{Delete node from a gRaven domain}
 \usage{
-delete.node(dom, n)
+delete.node(domain, n)
 }
 \arguments{
-  \item{dom}{domain name}
+  \item{domain}{domain name}
   \item{n}{node of to be deleted}
 }
 \details{Emulates function of the same name in the \code{RHugin} package by calls to \code{gRain} functions. Deletes the specified node and all incident edges; nullifies all corresponding CPTs.}

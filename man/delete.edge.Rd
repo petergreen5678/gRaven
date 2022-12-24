@@ -4,9 +4,9 @@
 \description{
 Delete edge from a gRaven domain
 }
-\usage{delete.edge(dom, n, p)}
+\usage{delete.edge(domain, n, p)}
 \arguments{
-  \item{dom}{domain name}
+  \item{domain}{domain name}
   \item{n}{child node of edge to be deleted}
   \item{p}{parent node of edge to be deleted}
 }

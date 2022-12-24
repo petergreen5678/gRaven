@@ -2,9 +2,9 @@
 \alias{initialize.domain}
 \title{Re-initialise a gRaven domain}
 \description{Re-initialise a gRaven domain}
-\usage{initialize.domain(dom)}
+\usage{initialize.domain(domain)}
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
 }
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 

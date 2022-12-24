@@ -2,9 +2,9 @@
 \alias{clone.domain}
 \title{Clone a gRaven domain Object}
 \description{Create a gRaven domain.}
-\usage{clone.domain(dom)}
+\usage{clone.domain(domain)}
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
 }
 \details{Makes a copy of an existing gRaven domain}
 \value{character string naming a gRaven domain}

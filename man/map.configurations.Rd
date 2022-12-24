@@ -2,9 +2,9 @@
 \alias{map.configurations}
 \title{Get belief in a gRaven domain}
 \description{Find the configurations of the specified nodes that occur with probability \code{pmin} or greater. These configurations are known as most probable configurations or maximum a posteriori (MAP) configurations.}
-\usage{map.configurations(dom, nodes, pmin)}
+\usage{map.configurations(domain, nodes, pmin)}
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
   \item{nodes}{character vector of names of nodes}
   \item{pmin}{a single numeric value between 0 and 1 specifying the minimum probability for the most probable configurations}
 }

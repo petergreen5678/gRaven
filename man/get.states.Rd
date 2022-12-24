@@ -5,12 +5,12 @@
 \title{Get states, edges and children in a gRaven domain}
 \description{Get states, edges and children in a gRaven domain}
 \usage{
-get.states(dom, node=dom$nodes)
-get.children(dom, nodes)
-get.edges(dom, nodes=dom$nodes)
+get.states(domain, node=domain$nodes)
+get.children(domain, nodes)
+get.edges(domain, nodes=domain$nodes)
 }
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
   \item{nodes}{name of nodes}
   \item{node}{name of node}
 }

@@ -3,10 +3,10 @@
 \title{Set CPT in a gRaven domain}
 \description{Set CPT in a gRaven domain}
 \usage{
-set.table(dom, n, tab = 1, type = "cpt")
+set.table(domain, n, tab = 1, type = "cpt")
 }
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
   \item{n}{name of node}
   \item{tab}{values of conditional probabilties}  
   \item{type}{only "cpt" is accepted}

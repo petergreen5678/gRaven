@@ -1,16 +1,16 @@
-.getfinding <- function(dom,node)
+.getfinding <- function(domain,node)
 {
-  i <- match(node, dom$net$evidence$nodes)
+  i <- match(node, domain$net$evidence$nodes)
   ## No evidence corresponds to constant evidence of 1
-  if(is.na(i)) return(rep(1,length(dom$states[[node]])))
-  as.vector(dom$net$evidence$evi_weight[[i]])
+  if(is.na(i)) return(rep(1,length(domain$states[[node]])))
+  as.vector(domain$net$evidence$evi_weight[[i]])
 }
 
-map.configurations <-function (dom, nodes, pmin) 
+map.configurations <-function (domain, nodes, pmin) 
 {
   if (pmin <= 0 || pmin > 1) 
     stop("pmin is not between 0 and 1")
-  if(!dom$net$isPropagated) propagate(dom)
+  if(!domain$net$isPropagated) propagate(domain)
 
   n <- 1000              # Batch size for simulations
   conf <- NULL           # data.frame of seen configurations
@@ -25,28 +25,28 @@ map.configurations <-function (dom, nodes, pmin)
   findings <- list()
   for(j in seq_along(nodes)) 
   {
-    states[[j]] <- get.states(dom,nodes[j])
-    findings[[j]] <- .getfinding(dom,nodes[j])
+    states[[j]] <- get.states(domain,nodes[j])
+    findings[[j]] <- .getfinding(domain,nodes[j])
   }
   
   ## Second domain for computations (takes extra memory!)
   ## The state of the original network is left unaltered,
   ## so that simulations from it are from the correct distribution.
-  dom2 <- clone.domain(dom)
+  domain2 <- clone.domain(domain)
   
   ## Normalisation constant *before* entering configuration of interest
   ## (but after any initially propagated evidence)
-  nc1 <- get.normalization.constant(dom2) 
+  nc1 <- get.normalization.constant(domain2) 
   
   while (totalp < 1-pmin){
   
     ## Simulate batch of n configurations, keep only relevant nodes
-    sg <- simulate.grain(dom$net, n)
+    sg <- simulate.grain(domain$net, n)
     sg <- subset(sg, select = nodes) 
     
     ## Change state values from factors to provided state values
     for(node in nodes) {
-            sg[, node] <- get.states(dom,node)[as.integer(sg[, 
+            sg[, node] <- get.states(domain,node)[as.integer(sg[, 
                 node])]
     }
     
@@ -60,11 +60,11 @@ map.configurations <-function (dom, nodes, pmin)
       for (r in (i+1):nrow(conf)){
         
         ## Enter a new configuration
-        lapply(1:size, function(j)set.finding(dom2, nodes[j], as.integer(conf[r,j] == states[[j]])*findings[[j]]))
+        lapply(1:size, function(j)set.finding(domain2, nodes[j], as.integer(conf[r,j] == states[[j]])*findings[[j]]))
 
         ## Get configuration probability as the ratio of normalising constants 
         ## after vs before entering configuration
-        p[r] <- get.normalization.constant(dom2)/nc1
+        p[r] <- get.normalization.constant(domain2)/nc1
       }
 
       ## Record the last row with computed probability, 

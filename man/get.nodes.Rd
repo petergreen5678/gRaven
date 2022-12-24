@@ -2,9 +2,9 @@
 \alias{get.nodes}
 \title{Get the nodes of a gRaven domain}
 \description{Get the nodes of a gRaven domain}
-\usage{get.nodes(dom)}
+\usage{get.nodes(domain)}
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
 }
 \details{Emulates function of the same name in the \code{RHugin} package by calls to \code{gRain} functions}
 \value{Character vector of node names.}

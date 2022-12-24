@@ -3,10 +3,10 @@
 \title{Get the parents of a node in a gRaven domain}
 \description{Get the parents of a node in a gRaven domain}
 \usage{
-get.parents(dom, n)
+get.parents(domain, n)
 }
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
   \item{n}{name of node}
 }
 \value{A named list of character vectors of names of parents.}

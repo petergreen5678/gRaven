@@ -5,13 +5,13 @@
 \title{Set, retract and inspect findings}
 \description{Set, retract and inspect findings}
 \usage{
-set.finding(dom, node, finding)
-retract(dom, nodes=dom$nodes)
-get.finding(dom, nodes=dom$nodes, type = c("entered", "propagated"), 
+set.finding(domain, node, finding)
+retract(domain, nodes=domain$nodes)
+get.finding(domain, nodes=domain$nodes, type = c("entered", "propagated"), 
 	namestates=FALSE)
 }
 \arguments{
-  \item{dom}{name of gRaven domain}
+  \item{domain}{name of gRaven domain}
   \item{node}{name of node}
   \item{nodes}{character vector naming one or mode nodes}
   \item{finding}{either a state of node \code{node} or a probability distribution over the states}

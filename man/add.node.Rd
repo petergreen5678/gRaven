@@ -2,9 +2,9 @@
 \alias{add.node}
 \title{Add Node to a gRaven domain}
 \description{Add a node to a gRaven domain.}
-\usage{add.node(dom, n, states, subtype)}
+\usage{add.node(domain, n, states, subtype)}
 \arguments{
-  \item{dom}{name of a gRaven domain}
+  \item{domain}{name of a gRaven domain}
   \item{n}{a character string containing the name of the node to be added}
   \item{states}{a character, numeric or logical vector listing the states for this node}
   \item{subtype}{a character string, 'labeled', 'numbered' or 'boolean'}

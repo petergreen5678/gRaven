@@ -3,10 +3,10 @@
 \title{Get the normalisation constant of a gRaven domain}
 \description{Get the normalisation constant of a gRaven domain}
 \usage{
-get.normalization.constant(dom, log = FALSE)
+get.normalization.constant(domain, log = FALSE)
 }
 \arguments{
-  \item{dom}{
+  \item{domain}{
 name of a gRaven domain
 }
   \item{log}{
