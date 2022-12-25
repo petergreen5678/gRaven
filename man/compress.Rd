@@ -6,6 +6,8 @@
 \arguments{
   \item{domain}{name of gRaven domain}
 }
+\details{compression in the sense used in Hugin is not available in
+gRain, so this function has no effect.}
 \value{1}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{

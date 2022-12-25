@@ -7,6 +7,8 @@
   \item{domain}{name of gRaven domain}
 }
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
+\details{Emulates function of the same name in the \code{RHugin} package.
+Restores the domain to the state it was in after the call to \code{compile}, in particular erasing all entered evidence.}
 
 \value{a NULL value is invisibly returned.}
 

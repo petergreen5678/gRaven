@@ -29,8 +29,10 @@ initialize.domain<-function(domain)
 	domain$net$cache<-NULL
 	}
 
-add.node<-function (domain, n, states, subtype) 
+add.node<-function (domain, name, category = "chance", kind = "discrete", subtype, states) 
 {
+    if(category!="chance") stop("gRaven does not yet handle category =",category)
+    if(kind!="discrete") stop("gRaven does not yet handle kind =",kind)
     if (missing(states)) {
         if (subtype == "boolean") 
             states <- c(0, 1)
@@ -46,13 +48,13 @@ add.node<-function (domain, n, states, subtype)
 		attr(states,"logical")<-states
 		states[] <- c(0, 1)
 		}
-    if (n %in% domain$nodes) 
-        stop(n, " already in domain\n")
+    if (name %in% domain$nodes) 
+        stop(name, " already in domain\n")
     if(any(duplicated(states))) stop("states must be distinct")
     
-    domain$nodes <- c(domain$nodes, n)
-    domain$states <- c(domain$states, structure(list(states), names = n))
-    domain$parents <- c(domain$parents, structure(list(NULL), names = n))
+    domain$nodes <- c(domain$nodes, name)
+    domain$states <- c(domain$states, structure(list(states), names = name))
+    domain$parents <- c(domain$parents, structure(list(NULL), names = name))
 }
 
 add.edge<-function(domain,child,parent)

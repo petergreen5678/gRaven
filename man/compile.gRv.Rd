@@ -11,8 +11,8 @@
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 chest<-hugin.domain()
-add.node(chest,"asia",c("yes","no"))
-add.node(chest,"tub",c("yes","no"))
+add.node(chest,"asia",states=c("yes","no"))
+add.node(chest,"tub",states=c("yes","no"))
 add.edge(chest,"tub","asia")
 chest
 compile(chest)
