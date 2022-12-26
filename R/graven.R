@@ -89,10 +89,12 @@ delete.edge<-function (domain, n, p)
     domain$cptables[[n]] <- NULL
 }
 
-get.table<-function (domain,n) 
+get.table<-function (domain,n,type = "cpt",class = "data.frame") 
 {
 # delivers CPT as a data.frame, either by extracting it if it already exists in domain$cptables, 
 # or initialised with freq=1
+if(type!="cpt") stop("gRaven does not yet handle type =",type)
+if(class!="data.frame") stop("gRaven does not yet handle class =",class)
 z<-domain$cptables
 if(is.null(z)||is.null(z[[n]])) 
 {
@@ -118,6 +120,7 @@ df
 
 set.table<-function(domain,n,tab=1,type="cpt")
 {
+if(type!="cpt") stop("gRaven does not yet handle type =",type)
 if(is.data.frame(tab)) Freq<-tab$Freq else Freq<-as.vector(tab)
 if(is.null(domain$net))
 {

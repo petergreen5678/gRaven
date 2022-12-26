@@ -9,11 +9,12 @@ set.table(domain, n, tab = 1, type = "cpt")
   \item{domain}{name of gRaven domain}
   \item{n}{name of node}
   \item{tab}{values of conditional probabilties}  
-  \item{type}{only "cpt" is accepted}
+  \item{type}{a character string specifying the type of table to set.}
 }
-\author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
+\section{Differences from RHugin}{only type "cpt" is currently accepted.}
 
 \value{a NULL value is invisibly returned.}
+\author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 
 \examples{
 demo(chest,package="gRaven")

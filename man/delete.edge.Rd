@@ -10,6 +10,9 @@ Delete edge from a gRaven domain
   \item{n}{child node of edge to be deleted}
   \item{p}{parent node of edge to be deleted}
 }
+\section{Differences from RHugin}{
+Deleting an edge nullifies the CPT for node n, if any.
+}
 \value{a NULL value is invisibly returned.}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{

@@ -5,14 +5,13 @@
 \title{Get states, edges and children in a gRaven domain}
 \description{Get states, edges and children in a gRaven domain}
 \usage{
-get.states(domain, node=domain$nodes)
+get.states(domain, nodes=domain$nodes)
 get.children(domain, nodes)
 get.edges(domain, nodes=domain$nodes)
 }
 \arguments{
   \item{domain}{name of gRaven domain}
-  \item{nodes}{name of nodes}
-  \item{node}{name of node}
+  \item{nodes}{name of node(s)}
 }
 \details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions}
 \section{Differences from RHugin}{
