@@ -3,7 +3,8 @@
 \title{Set CPT in a gRaven domain}
 \description{Set CPT in a gRaven domain}
 \usage{
-set.table(domain, n, tab = 1, type = "cpt")
+set.table(domain, n, tab = 1, type = c("cpt", "experience", 
+    "fading"))
 }
 \arguments{
   \item{domain}{name of gRaven domain}

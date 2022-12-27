@@ -3,7 +3,9 @@
 \title{Get a CPT in a gRaven domain}
 \description{Get a conditional probability table for a node in a gRaven domain}
 \usage{
-get.table(domain, n, type = "cpt", class = "data.frame")
+get.table(domain, n, type = c("cpt", "experience", 
+    "fading"), class = c("data.frame", "table", 
+    "ftable", "numeric"))
 }
 \arguments{
   \item{domain}{name of gRaven domain}

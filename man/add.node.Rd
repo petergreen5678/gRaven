@@ -2,7 +2,9 @@
 \alias{add.node}
 \title{Add Node to a gRaven domain}
 \description{Add a node to a gRaven domain.}
-\usage{add.node(domain, name, category = "chance", kind = "discrete", subtype, states)}
+\usage{add.node(domain, name, category = c("chance", 
+    "decision", "utility", "function"), kind = c("discrete", "continuous", "other"), 
+    subtype, states)}
 \arguments{
   \item{domain}{name of a gRaven domain}
   \item{name}{a character string containing the name of the node to be added}

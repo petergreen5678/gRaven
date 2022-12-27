@@ -29,9 +29,13 @@ initialize.domain<-function(domain)
 	domain$net$cache<-NULL
 	}
 
-add.node<-function (domain, name, category = "chance", kind = "discrete", subtype, states) 
+add.node<-function (domain, name, category = c("chance", 
+    "decision", "utility", "function"), kind = c("discrete", "continuous", "other"), 
+    subtype, states) 
 {
+    category <- match.arg(category)
     if(category!="chance") stop("gRaven does not yet handle category =",category)
+    kind <- match.arg(kind)
     if(kind!="discrete") stop("gRaven does not yet handle kind =",kind)
     if (missing(states)) {
         if (subtype == "boolean") 
@@ -89,11 +93,15 @@ delete.edge<-function (domain, n, p)
     domain$cptables[[n]] <- NULL
 }
 
-get.table<-function (domain,n,type = "cpt",class = "data.frame") 
+get.table<-function (domain,n,type = c("cpt", "experience", 
+    "fading"), class = c("data.frame", "table", 
+    "ftable", "numeric")) 
 {
 # delivers CPT as a data.frame, either by extracting it if it already exists in domain$cptables, 
 # or initialised with freq=1
+type <- match.arg(type)
 if(type!="cpt") stop("gRaven does not yet handle type =",type)
+class <- match.arg(class)
 if(class!="data.frame") stop("gRaven does not yet handle class =",class)
 z<-domain$cptables
 if(is.null(z)||is.null(z[[n]])) 
@@ -118,8 +126,10 @@ names(df)<-c(vpa,"Freq")
 df
 }
 
-set.table<-function(domain,n,tab=1,type="cpt")
+set.table<-function(domain,n,tab=1,type = c("cpt", "experience", 
+    "fading"))
 {
+type <- match.arg(type)
 if(type!="cpt") stop("gRaven does not yet handle type =",type)
 if(is.data.frame(tab)) Freq<-tab$Freq else Freq<-as.vector(tab)
 if(is.null(domain$net))
@@ -208,8 +218,8 @@ retract<-function(domain, nodes=domain$nodes)
 
 get.finding<-function(domain,nodes=domain$nodes, type = c("entered", "propagated"), namestates=FALSE)
 {
-type<-pmatch(type,c("entered", "propagated"))
-if(2%in%type) for(i in seq_along(domain$net$cache))
+type <- match.arg(type)
+for(i in seq_along(domain$net$cache))
 {
 	node<-names(domain$net$cache)[i]
 	finding<-domain$net$cache[[i]]
@@ -221,7 +231,7 @@ if(2%in%type) for(i in seq_along(domain$net$cache))
 	cat(paste0(node,":"),finding,"cache\n")
 	}
 }
-if(1%in%type) for(i in seq_along(domain$net$evi$evi))
+if(type=="propagated") for(i in seq_along(domain$net$evi$evi))
 {
 	node<-names(dimnames(domain$net$evi$evi[[i]]))
 	finding<-as.vector(domain$net$evi$evi[[i]])
@@ -283,8 +293,9 @@ get.normalization.constant<-function(domain,log=FALSE)
 
 get.nodes<-function(domain) domain$nodes
 
-get.parents<-function(domain,n)
+get.parents<-function(domain, n, type = "parents")
 {
+if(type!="parents") stop("gRaven does not yet handle type =",type)
 domain$parents[[n]]
 }
     
