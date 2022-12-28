@@ -218,8 +218,10 @@ retract<-function(domain, nodes=domain$nodes)
 
 get.finding<-function(domain,nodes=domain$nodes, type = c("entered", "propagated"), namestates=FALSE)
 {
+# default is now to display both evid and cache -
+# to get only propagated, use type="propagated"
 type <- match.arg(type)
-for(i in seq_along(domain$net$cache))
+if(type!="propagated") for(i in seq_along(domain$net$cache))
 {
 	node<-names(domain$net$cache)[i]
 	finding<-domain$net$cache[[i]]
@@ -231,7 +233,7 @@ for(i in seq_along(domain$net$cache))
 	cat(paste0(node,":"),finding,"cache\n")
 	}
 }
-if(type=="propagated") for(i in seq_along(domain$net$evi$evi))
+for(i in seq_along(domain$net$evi$evi))
 {
 	node<-names(dimnames(domain$net$evi$evi[[i]]))
 	finding<-as.vector(domain$net$evi$evi[[i]])
