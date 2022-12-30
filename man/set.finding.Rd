@@ -18,8 +18,12 @@ get.finding(domain, nodes=domain$nodes, type = c("entered", "propagated"),
   \item{type}{character vector of one or more options to select between evidence entered before or after most recent propagation}
   \item{namestates}{logical, should output have the states labelled}
 }
+\details{
+For \code{type}, partial matching is used.
+}
 \section{Differences from RHugin}{
-Unlike with the \code{RHugin} version, evidence can be set at only one node at a time with \code{set.finding}. For \code{type}, partial matching is used. The \code{case} argument is not supported in \code{gRaven}.}
+Findings (or evidence) are handled differently in \code{gRaven} (and \code{gRain}) than in \code{RHugin}, and that is reflected in differences in results from these functions, especially \code{get.finding}. For \code{set.finding} in \code{gRaven}, the \code{case} argument is not supported. For \code{get.finding} in both packages, previously-set evidence is displayed as a non-negative vector indexed by the states, typically a probability distribution; two enhancements in \code{gRaven} are that findings on more than one node can be displayed, and that the format of the output can be controlled by \code{namestates}. In \code{gRaven} when new evidence is set by \code{set.finding}, it replaces any existing evidence on the same node, and all existing evidence on all nodes is "unpropagated". Evidence is held in a data structure \code{cache} until propagation, when it is moved to \code{evid}; these names are used in labelling the output from \code{get.finding}. Finally if no evidence has been entered on a node, \code{RHugin} reports a vector of all ones, while \code{gRaven} is silent.
+}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \value{For \code{set.finding} and \code{retract}, a NULL value is invisibly returned. For \code{get.finding}, the likelihood vector is returned for each specified node, in a format governed by \code{namestates}.}
 \examples{
