@@ -6,13 +6,15 @@ export("add.edge", "add.node", "compile.gRv",
        "hugin.domain", "initialize.domain", "list.domains", 
        "map.configurations", "print.gRv",
        "print.gRv", "propagate.gRv", "retract",
-       "set.finding", "set.table", "simulate.gRv", "propagate.gRv")
+       "set.finding", "set.table", "simulate.gRv", "summary.gRv")
 
 S3method(print,gRv)
 S3method(propagate,gRv)
 S3method(compile,gRv)
 S3method(triangulate,gRv)
 S3method(simulate,gRv)
+S3method(summary,gRv)
+S3method(print,summary.gRv)
 
 importFrom(methods,is)
 importFrom(stats,simulate)

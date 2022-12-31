@@ -1,10 +1,22 @@
 print.gRv<-function(x, ...)
 {
-      cat("domain with slots:",names(x),"\n")
+      cat("A gRaven domain with slots:",names(x),"\n")
       cat(length(x$nodes),"nodes:",x$nodes,fill=60)
-      cat(sum(sapply(x$parents,length)),"edges\n")
+      cat(sum(sapply(x$parents,length)),"edges:\n")
       for(n in x$nodes) if(length(x$parents[[n]])>0) cat("  ",x$parents[[n]],"->",n,"\n")
       invisible(NULL)
+}
+
+summary.gRv<-function(object, ...)
+{
+      cat('gRaven domain:\n')
+      res1<-if(!is.null(object$net)) object$net$isCompiled else FALSE
+      cat(paste0('    Compiled: the domain is ',ifelse(res1,'','not '),'compiled\n'))
+      res2<-if(!is.null(object$net)) object$net$isPropagated else FALSE
+      cat('  Propagated:',res2,'\n')
+# JT
+      JT<-if(!is.null(object$net)) object$net$rip$cliques else NULL
+      invisible(print(JT))
 }
 
 
