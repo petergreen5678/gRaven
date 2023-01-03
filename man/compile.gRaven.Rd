@@ -1,10 +1,10 @@
-\name{compile.gRv}
-\alias{compile.gRv}
+\name{compile.gRaven}
+\alias{compile.gRaven}
 \title{Compile a gRaven domain}
 \description{Compile a gRaven domain}
-\usage{\method{compile}{gRv}(object, ...)}
+\usage{\method{compile}{gRaven}(object, ...)}
 \arguments{
-  \item{object}{name of gRv domain}
+  \item{object}{name of gRaven domain}
   \item{...}{additional arguments to \code{\link{compile}}}
 }
 \value{a NULL value is invisibly returned.}

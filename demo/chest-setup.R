@@ -30,25 +30,3 @@ chest
 
 compile(chest)
 
-summary(chest,jt=TRUE)
-
-get.normalization.constant(chest)
-
-set.finding(chest,"smoke","no")
-set.finding(chest,"dysp","yes")
-
-get.normalization.constant(chest)
-
-get.belief(chest,'lung')
-get.belief(chest,'bronc')
-map.configurations(chest,get.nodes(chest),0.001)
-
-chest2<-clone.domain(chest)
-retract(chest2)
-summary(chest2)
-
-simulate(chest2,10)
-
-list.domains()
-
-

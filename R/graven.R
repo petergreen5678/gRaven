@@ -1,4 +1,4 @@
-print.gRv<-function(x, ...)
+print.gRaven<-function(x, ...)
 {
       cat("A gRaven domain with slots:",names(x),"\n")
       cat(length(x$nodes),"nodes:",x$nodes,fill=60)
@@ -7,7 +7,7 @@ print.gRv<-function(x, ...)
       invisible(NULL)
 }
 
-summary.gRv<-function(object, ...)
+summary.gRaven<-function(object, ...)
 {
       cat('gRaven domain:\n')
       res1<-if(!is.null(object$net)) object$net$isCompiled else FALSE
@@ -23,14 +23,14 @@ summary.gRv<-function(object, ...)
 hugin.domain<-function () 
 {
 	e <- rlang::env( nodes=NULL, states=NULL, parents=NULL, cptables=NULL)
-	class(e)<-c("gRv","environment")
+	class(e)<-c("gRaven","environment")
 	e
 }
 
 clone.domain<-function(domain)
 	{
 	domain2<-rlang::env_clone(domain)
-	class(domain2)<-c("gRv","environment")
+	class(domain2)<-c("gRaven","environment")
 	domain2
 	}
 
@@ -161,7 +161,7 @@ if(is.null(domain$net))
 }
 }
 
-compile.gRv<-function(object, ...)
+compile.gRaven<-function(object, ...)
 	{
 	if(!is.null(object$net)) warning("domain already compiled")
 # if any nodes are missing cptables, provide dummy table
@@ -184,7 +184,7 @@ check.compiled<-function(domain)
 		for(n in domain$nodes) if(is.null(domain$cptables[[n]])) {set.table(domain,n,1)} #; cat("set table",domain,n,"\n")}
 		domain$net<-NULL
 	}
-	if(is.null(domain$net)) {compile.gRv(domain); cat("compiled",domain,"\n")}
+	if(is.null(domain$net)) {compile.gRaven(domain); cat("compiled",domain,"\n")}
 }
 
 set.finding<-function(domain, node, finding)
@@ -264,7 +264,7 @@ get.belief<-function (domain, n)
     unlist(querygrain(domain$net, n, exclude = FALSE,evidence=domain$net$cache))
 }
 
-propagate.gRv<-function(object, ...) 
+propagate.gRaven<-function(object, ...) 
 	{
 	check.compiled(object)
 	if(!is.null(object$net$cache))
@@ -313,12 +313,12 @@ if(type!="parents") stop("gRaven does not yet handle type =",type)
 domain$parents[[n]]
 }
     
-simulate.gRv <- function(object, nsim = 1, seed = NULL, ...)
+simulate.gRaven <- function(object, nsim = 1, seed = NULL, ...)
 	{
 	simulate.grain(object$net, nsim = nsim, seed = NULL, ...)   
 	}
 
-triangulate.gRv<-function(object, ...) {}
+triangulate.gRaven<-function(object, ...) {}
 
 compress<-function(domain) {1}
 
@@ -326,7 +326,7 @@ list.domains<-function (print = TRUE)
 {
 	domains <- NULL
 	lsa<-ls(all.names = TRUE, envir = .GlobalEnv)
-	for (x in lsa) if (is(get(x), "gRv")) domains <- c(domains, x)
+	for (x in lsa) if (is(get(x), "gRaven")) domains <- c(domains, x)
 	if(print) cat(domains,fill=60)
 	for(v in lsa) if(is.list(get(v))&&"domains"%in%names(get(v))) 
 		{

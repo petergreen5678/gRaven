@@ -1,4 +1,4 @@
-summary.gRv<-function (object, domain = TRUE, nodes = FALSE, jt = FALSE, print.cliques = FALSE, 
+summary.gRaven<-function (object, domain = TRUE, nodes = FALSE, jt = FALSE, print.cliques = FALSE, 
     ...) 
 {
     if(nodes|print.cliques) warning('not all options yet implemented')
@@ -33,10 +33,10 @@ summary.gRv<-function (object, domain = TRUE, nodes = FALSE, jt = FALSE, print.c
 	jt.summary<-list(cliques=object$net$rip$cliques,parents=object$net$rip$parents)
 	}
 res<-list(domain=domain.summary,jt=jt.summary)
-structure(res,class="summary.gRv")
+structure(res,class="summary.gRaven")
 }
 
-print.summary.gRv<-function(x, ...)
+print.summary.gRaven<-function(x, ...)
 {
 if(!is.null(x$domain))
 {

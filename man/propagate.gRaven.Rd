@@ -1,8 +1,8 @@
-\name{propagate.gRv}
-\alias{propagate.gRv}
+\name{propagate.gRaven}
+\alias{propagate.gRaven}
 \title{Propagate method for a gRaven domain}
 \description{Propagate method for a gRaven domain}
-\usage{\method{propagate}{gRv}(object, ...)}
+\usage{\method{propagate}{gRaven}(object, ...)}
 \arguments{
   \item{object}{character string, name of gRaven domain}
   \item{...}{additional arguments to \code{\link{propagate}}}

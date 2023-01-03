@@ -1,8 +1,8 @@
-\name{summary.gRv}
-\alias{summary.gRv}
+\name{summary.gRaven}
+\alias{summary.gRaven}
 \title{Summary method for a gRaven domain}
 \description{Summary method for a gRaven domain}
-\usage{\method{summary}{gRv}(object, domain = TRUE, nodes = FALSE, jt = FALSE, print.cliques = FALSE, 
+\usage{\method{summary}{gRaven}(object, domain = TRUE, nodes = FALSE, jt = FALSE, print.cliques = FALSE, 
     ...)}
 \arguments{
   \item{object}{character string, name of gRaven domain}

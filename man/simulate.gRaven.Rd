@@ -1,8 +1,8 @@
-\name{simulate.gRv}
-\alias{simulate.gRv}
+\name{simulate.gRaven}
+\alias{simulate.gRaven}
 \title{ method for a gRaven domain}
 \description{Simulate method for a gRaven domain}
-\usage{\method{simulate}{gRv}(object, nsim = 1, seed = NULL, ...)}
+\usage{\method{simulate}{gRaven}(object, nsim = 1, seed = NULL, ...)}
 \arguments{
   \item{object}{character string, name of gRaven domain}
   \item{nsim}{Number of cases to simulate}
