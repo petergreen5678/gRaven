@@ -73,6 +73,21 @@ add.node<-function (domain, name, category = c("chance",
     domain$parents <- c(domain$parents, structure(list(NULL), names = name))
 }
 
+delete.node<-function (domain, name) 
+{
+    domain$nodes <- domain$nodes[domain$nodes != name]
+    domain$states[[name]] <- NULL
+    domain$parents[[name]] <- NULL
+    domain$cptables[[name]] <- NULL
+	for(m in domain$nodes) if(name%in%domain$parents[[m]]) 
+	{
+	pars<-domain$parents[[m]]
+	pars<-pars[pars!=name]
+	if(length(pars)==0) domain$parents[m]<-list(NULL) else domain$parents[[m]]<-pars
+	domain$cptables[[m]]<-NULL
+	}
+}
+
 add.edge<-function(domain,child,parent)
 {
 if((!child%in%domain$nodes)||any(!parent%in%domain$nodes)) stop(child,"",parent," not all already in domain\n")
@@ -80,29 +95,13 @@ domain$parents[[child]]<-c(domain$parents[[child]],parent)
 domain$cptables[[child]]<-NULL
 }
 
-delete.node<-function (domain, n) 
+delete.edge<-function (domain, child, parent) 
 {
-    domain$nodes <- domain$nodes[domain$nodes != n]
-    domain$states[[n]] <- NULL
-    domain$parents[[n]] <- NULL
-    domain$cptables[[n]] <- NULL
-	for(m in domain$nodes) if(n%in%domain$parents[[m]]) 
-	{
-	pars<-domain$parents[[m]]
-	pars<-pars[pars!=n]
-	if(length(pars)==0) domain$parents[m]<-list(NULL) else domain$parents[[m]]<-pars
-	domain$cptables[[m]]<-NULL
-	}
-}
-
-delete.edge<-function (domain, n, p) 
-{
-    pars <- domain$parents[[n]]
-    pars <- pars[pars != p]
+    pars <- setdiff(domain$parents[[child]],parent)
     if (length(pars) == 0) 
-        domain$parents[n] <- list(NULL)
-    else domain$parents[[n]] <- pars
-    domain$cptables[[n]] <- NULL
+        domain$parents[child] <- list(NULL)
+    else domain$parents[[child]] <- pars
+    domain$cptables[[child]] <- NULL
 }
 
 get.table<-function (domain,n,type = c("cpt", "experience", 
@@ -115,6 +114,10 @@ type <- match.arg(type)
 if(type!="cpt") stop("gRaven does not yet handle type =",type)
 class <- match.arg(class)
 if(class!="data.frame") stop("gRaven does not yet handle class =",class)
+if(!is.null(domain$net))
+{
+return(as.data.frame.table(domain$net$cpt[[n]]))
+}
 z<-domain$cptables
 if(is.null(z)||is.null(z[[n]])) 
 {
