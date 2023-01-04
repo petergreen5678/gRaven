@@ -1,7 +1,7 @@
 \name{hugin.domain}
 \alias{hugin.domain}
 \alias{clone.domain}
-\title{Create or Clone a gRaven Domain}
+\title{Create or Clone a gRaven Domain'}
 \description{Create or Clone a gRaven domain object.}
 \usage{
 hugin.domain()

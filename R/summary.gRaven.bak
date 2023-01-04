@@ -1,7 +1,7 @@
 summary.gRaven<-function (object, domain = TRUE, nodes = FALSE, jt = FALSE, print.cliques = FALSE, 
     ...) 
 {
-    if(nodes|print.cliques) warning('not all options are yet implemented')
+    if(nodes|print.cliques) warning('not all options yet implemented')
     if (is.logical(nodes)) {
         if (nodes) 
             nodes <- get.nodes(object)
