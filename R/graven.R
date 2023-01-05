@@ -267,6 +267,14 @@ get.belief<-function (domain, n)
     unlist(querygrain(domain$net, n, exclude = FALSE,evidence=domain$net$cache))
 }
 
+get.marginal<-function(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"))
+{
+    class <- match.arg(class)
+    if(class!="data.frame") stop("gRaven does not yet handle class =",class)
+    res<-as.data.frame.table(querygrain(domain$net, nodes, 'joint',exclude = FALSE,evidence=domain$net$cache))
+    list(table=res[,c(nodes,'Freq')])
+}
+
 propagate.gRaven<-function(object, ...) 
 	{
 	check.compiled(object)
