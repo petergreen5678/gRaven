@@ -180,14 +180,14 @@ compile.gRaven<-function(object, ...)
 	object$net<-net
 	}
 
-check.compiled<-function(domain)
+check.compiled<-function(object)
 {
-	if(!all(domain$nodes%in%names(domain$cptables))) {
-		if(is.null(domain$cptables)) domain$cptables<-list()
-		for(n in domain$nodes) if(is.null(domain$cptables[[n]])) {set.table(domain,n,1)} #; cat("set table",domain,n,"\n")}
-		domain$net<-NULL
+	if(!all(object$nodes%in%names(object$cptables))) {
+		if(is.null(object$cptables)) object$cptables<-list()
+		for(n in object$nodes) if(is.null(object$cptables[[n]])) {set.table(object,n,1)}
+		object$net<-NULL
 	}
-	if(is.null(domain$net)) {compile.gRaven(domain); cat("compiled",domain,"\n")}
+	if(is.null(object$net)) {compile.gRaven(object); cat("compiled",object,"\n")}
 }
 
 set.finding<-function(domain, node, finding)
