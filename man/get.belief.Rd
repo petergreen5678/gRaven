@@ -4,16 +4,16 @@
 \title{Get beliefs in a gRaven domain}
 \description{Get beliefs (marginal probabilities) in a gRaven domain}
 \usage{
-get.belief(domain, n)
+get.belief(domain, nodes)
 get.marginal(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"))
 }
 \arguments{
   \item{domain}{name of gRaven domain}
-  \item{n}{name of node}
   \item{nodes}{character vector of names of nodes}
   \item{class}{desired class of output}
 }
 \details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions.}
+\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time.}
 \value{Vector of marginal probabilities}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
