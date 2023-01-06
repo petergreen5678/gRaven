@@ -2,7 +2,7 @@
 \alias{get.belief}
 \alias{get.marginal}
 \title{Get beliefs in a gRaven domain}
-\description{Get beliefs (marginal probabilities) in a gRaven domain}
+\description{Get beliefs (marginal joint probabilities) in a gRaven domain}
 \usage{
 get.belief(domain, nodes)
 get.marginal(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"))
@@ -13,8 +13,8 @@ get.marginal(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"
   \item{class}{desired class of output}
 }
 \details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions.}
-\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time.}
-\value{Vector of marginal probabilities}
+\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time. Only class="table" is currently implemented.}
+\value{Data frame of marginal joint probabilities}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 demo("chest",package="gRaven",echo=FALSE)
