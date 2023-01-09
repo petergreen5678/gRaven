@@ -1,8 +1,8 @@
 Package: gRaven
 Type: Package
 Title: Bayes Nets: 'RHugin' Emulation with 'gRain'
-Version: 1.1.4
-Date: 2023-01-06
+Version: 1.1.5
+Date: 2023-01-09
 Authors@R: c(person("Peter", "Green", role = c("aut", "cre"), email = "P.J.Green@bristol.ac.uk"),
   person("Therese", "Graversen", role = "ctb", email = "theg@itu.dk"),
   person("Soren", "Hojsgaard", role = "ctb", email = "sorenh@math.aau.dk"))

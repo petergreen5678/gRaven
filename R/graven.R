@@ -274,6 +274,10 @@ get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable"
 
 get.belief<-function(domain,nodes)
 {
+if(length(nodes)==1)
+{
+return(structure(as.vector(querygrain(domain$net, nodes)[[1]]),names=get.states(domain,nodes)))
+} else {
 res <- as.data.frame.table(querygrain(domain$net, nodes, 
         "joint", exclude = FALSE, evidence = domain$net$cache))
 res<-res[, c(nodes, "Freq")]
@@ -282,6 +286,8 @@ for (node in nodes) {
 	}
 res
 }
+}
+
 
 propagate.gRaven<-function(object, ...) 
 	{
