@@ -231,39 +231,43 @@ retract<-function(domain, nodes=domain$nodes)
 	if(!is.null(domain$net$evidence)) domain$net<-retractEvidence(domain$net,intersect(nodes,domain$net$evi$nodes),propagate=FALSE)
 	}
 
-get.finding<-function(domain,nodes=domain$nodes, type = c("entered", "propagated"), namestates=FALSE)
+get.finding<-function (domain, nodes = domain$nodes, type = c("entered", "propagated"), 
+    namestates = FALSE) 
 {
-# default is now to display both evid and cache -
-# to get only propagated, use type="propagated"
-type <- match.arg(type)
-res<-list()
-for(i in seq_along(domain$net$evi$evi))
-{
-        node<-names(dimnames(domain$net$evi$evi[[i]]))
-        finding<-as.vector(domain$net$evi$evi[[i]])
-        names(finding)<-get.states(domain,node)
-        if(node%in%nodes) if(namestates) {
-        cat(paste0(node,":"),"evid\n")
-        print(finding)
-        } else { 
-        cat(paste0(node,":"),finding,"evid\n")
+    type <- match.arg(type)
+    res <- list()
+    for (i in seq_along(domain$net$evi$evi)) {
+        node <- names(dimnames(domain$net$evi$evi[[i]]))
+        finding <- as.vector(domain$net$evi$evi[[i]])
+        names(finding) <- get.states(domain, node)
+        if (node %in% nodes) 
+		{            
+		if (namestates) {
+                cat(paste0(node, ":"), "evid\n")
+                print(finding)
+            } else {
+                cat(paste0(node, ":"), finding, "evid\n")
+            }
+		res[[node]] <- finding
+	}
+    }
+    if (type != "propagated") 
+        for (i in seq_along(domain$net$cache)) {
+            node <- names(domain$net$cache)[i]
+            finding <- domain$net$cache[[i]]
+            names(finding) <- get.states(domain, node)
+            if (node %in% nodes) 
+		{
+             if (namestates) {
+                  cat(paste0(node, ":"), "cache\n")
+                  print(finding)
+             } else {
+                  cat(paste0(node, ":"), finding, "cache\n")
+             }
+             res[[node]] <- finding
+		}
         }
-	res[[node]]<-finding
-}
-if(type!="propagated") for(i in seq_along(domain$net$cache))
-{
-        node<-names(domain$net$cache)[i]
-        finding<-domain$net$cache[[i]]
-        names(finding)<-get.states(domain,node)
-        if(node%in%nodes) if(namestates) {
-        cat(paste0(node,":"),"cache\n")
-        print(finding)
-        } else { 
-        cat(paste0(node,":"),finding,"cache\n")
-        }
-	res[[node]]<-finding
-}
-invisible(if(length(res)==1) res[[1]] else res)
+    invisible(if (length(res) == 1) res[[1]] else if(length(res)==0 & length(nodes)==1) rep(1,length(get.states(domain,nodes))) else res)
 }
 
 get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable", 
