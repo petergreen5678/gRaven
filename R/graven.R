@@ -268,16 +268,6 @@ get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable"
     class <- match.arg(class)
     if (class != "data.frame") 
         stop("gRaven does not yet handle class =", class)
-    list(table = get.belief(domain,nodes))
-}
-
-
-get.belief<-function(domain,nodes)
-{
-if(length(nodes)==1)
-{
-return(structure(as.vector(querygrain(domain$net, nodes)[[1]]),names=get.states(domain,nodes)))
-} else {
 res <- as.data.frame.table(querygrain(domain$net, nodes, 
         "joint", exclude = FALSE, evidence = domain$net$cache))
 res<-res[, c(nodes, "Freq")]
@@ -285,9 +275,18 @@ for (node in nodes) {
 	res[[node]] <- get.states(domain, node)[as.integer(res[[node]])]
 	}
 res
-}
+    list(table = res)
 }
 
+get.belief<-function(domain,nodes)
+{
+if(length(nodes)>1)
+{
+return(get.marginal(domain,nodes))
+} else {
+structure(as.vector(querygrain(domain$net, nodes, evidence = domain$net$cache)[[1]]),names=get.states(domain,nodes))
+}
+}
 
 propagate.gRaven<-function(object, ...) 
 	{
