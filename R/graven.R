@@ -267,7 +267,10 @@ get.finding<-function (domain, nodes = domain$nodes, type = c("entered", "propag
              res[[node]] <- finding
 		}
         }
-    invisible(if (length(res) == 1) res[[1]] else if(length(res)==0 & length(nodes)==1) rep(1,length(get.states(domain,nodes))) else res)
+	res<-if (length(res) == 1) res[[1]] else 
+		if(length(res)==0 & length(nodes)==1) structure(rep(1,length(get.states(domain,nodes))),names=get.states(domain,nodes)) else 
+		res
+    invisible(res)
 }
 
 get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable", 
