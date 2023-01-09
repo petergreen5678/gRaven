@@ -284,7 +284,7 @@ if(length(nodes)>1)
 {
 return(get.marginal(domain,nodes))
 } else {
-structure(as.vector(querygrain(domain$net, nodes, evidence = domain$net$cache)[[1]]),names=get.states(domain,nodes))
+structure(as.vector(querygrain(domain$net, nodes, exclude=FALSE, evidence = domain$net$cache)[[1]]),names=get.states(domain,nodes))
 }
 }
 
