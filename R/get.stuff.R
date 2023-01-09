@@ -13,9 +13,10 @@ else
 sapply(nodes,function(x) get.states(domain,x))
 }
 
+.children<-function(domain,node) domain$nodes[which(sapply(domain$parents, function(x) node%in%x))]
+
 get.children<-function(domain,nodes)
 {
-.children<-function(domain,node) domain$nodes[which(sapply(domain$parents, function(x) node%in%x))]
 if(length(nodes)==1) return(.children(domain,nodes))
 else 
 {
@@ -25,7 +26,17 @@ res
 }
 }
 
-get.edges<-function(domain,nodes=domain$nodes) get.children(domain,nodes)
+get.edges<-function (domain, nodes = domain$nodes) 
+{
+    if (length(nodes) == 1) 
+        return(list(edges=.children(domain, nodes)))
+    else {
+        res <- list()
+        for (node in nodes) res[[node]] <- list(edges=.children(domain, 
+            node))
+        res
+    }
+}
 
 
 
