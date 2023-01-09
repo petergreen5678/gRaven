@@ -13,8 +13,8 @@ get.marginal(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"
   \item{class}{desired class of output}
 }
 \details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions.}
-\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time. Only class="table" is currently implemented.}
-\value{Data frame of marginal joint probabilities}
+\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time. Only class="data.frame" is currently implemented.}
+\value{Data frame of marginal joint probabilities, or vector in the case of a single node}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 demo("chest",package="gRaven",echo=FALSE)
