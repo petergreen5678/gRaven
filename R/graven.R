@@ -266,15 +266,22 @@ get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable"
     "numeric")) 
 {
     class <- match.arg(class)
-    if (class != "data.frame") 
-        stop("gRaven does not yet handle class =", class)
-res <- as.data.frame.table(querygrain(domain$net, nodes, 
-        "joint", exclude = FALSE, evidence = domain$net$cache))
-res<-res[, c(nodes, "Freq")]
-for (node in nodes) {
-	res[[node]] <- get.states(domain, node)[as.integer(res[[node]])]
-	}
+    if (!(class %in% c("data.frame","table","numeric")))
+        stop("gRaven does not yet handle class = ", class)
+z<-querygrain(domain$net, nodes, "joint", exclude = FALSE, evidence = domain$net$cache)
+z<-aperm(z,nodes)
+res<-switch(class,
+data.frame={
+	res <- as.data.frame.table(z)
+	res<-res[, c(nodes, "Freq")]
+	for (node in nodes) {
+		res[[node]] <- get.states(domain, node)[as.integer(res[[node]])]
+		}
 res
+},
+table=z,
+numeric=as.vector(z)
+)
     list(table = res)
 }
 
