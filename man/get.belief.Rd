@@ -12,10 +12,10 @@ get.marginal(domain, nodes, class = c("data.frame", "table", "ftable", "numeric"
   \item{nodes}{character vector of names of nodes}
   \item{class}{desired class of output}
 }
-\details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions.}
-\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time. In \code{get.marginal}, class="ftable" is not currently implemented.}
-\value{For \code{get.marginal}, a list with one component "table" which is a data frame, table or numeric vector of marginal joint probabilities, as specified by \code{class}. 
-For \code{get.belief}, a vector in the case of a single node, otherwise as \code{get.marginal}}
+\details{Emulates functions of the same name in the \code{RHugin} package by calls to \code{gRain} functions. Unlike with \code{RHugin}, \code{gRaven} conditions on all entered evidence in reporting probabilities, not only propagated evidence.}
+\section{Differences from RHugin}{\code{get.belief} handles more than one node at a time. }
+\value{For \code{get.marginal}, a list with one component "table" which is a data frame, table, flat table or numeric vector of marginal joint probabilities, as specified by \code{class}. 
+For \code{get.belief}, a vector in the case of a single node (if there is no evidence on that node. a vector of ones), otherwise as \code{get.marginal}. }
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}
 \examples{
 demo("chest",package="gRaven",echo=FALSE)

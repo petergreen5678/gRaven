@@ -17,8 +17,7 @@ S3method(summary,gRaven)
 S3method(print,summary.gRaven)
 
 importFrom(methods,is)
-importFrom(stats,simulate)
+importFrom(stats,simulate,ftable)
 importFrom(rlang,env,env_clone)
 importFrom(gRbase,propagate,compile,triangulate)
 import(gRain)
-

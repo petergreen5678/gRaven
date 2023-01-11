@@ -12,7 +12,7 @@ check.compiled(object)
   \item{...}{additional arguments to \code{\link{compile}}}
 }
 \details{
-\code{check.compiled} compiles the domain if necessary, having first ensured that necessary information such as \code{cptables} is in place.
+\code{check.compiled} compiles the domain if necessary, having first ensured that necessary information such as \code{cptables} is in place. If the domain is already compiled, \code{compile} triggers a warning, but proceeds to re-initialise the \code{grain} object \code{domain$net}, in particular deleting any evidence set.
 }
 \value{a NULL value is invisibly returned.}
 \author{Peter J. Green, \email{P.J.Green@bristol.ac.uk}}

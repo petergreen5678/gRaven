@@ -166,7 +166,7 @@ if(is.null(domain$net))
 
 compile.gRaven<-function(object, ...)
 	{
-	if(!is.null(object$net)) warning("domain already compiled")
+	if(!is.null(object$net)) warning("domain already compiled: net is being re-initialised")
 # if any nodes are missing cptables, provide dummy table
 	for(n in setdiff(object$nodes,names(object$cptables))) {
 		vpa<-c(n,object$parents[[n]])
@@ -201,7 +201,7 @@ set.finding<-function(domain, node, finding)
 	cache<-domain$net$cache
 	if(is.null(cache)) cache<-list()
 
-# if it exists, empty evid into cache 
+# if it exists, empty evid into cache (E dominates over existing C if any, but new evidence dominates E)
 	if(!is.null(domain$net$evidence))
 			{
 			e<-domain$net$evidence$evi_weight
@@ -276,9 +276,7 @@ get.finding<-function (domain, nodes = domain$nodes, type = c("entered", "propag
 get.marginal<-function (domain, nodes, class = c("data.frame", "table", "ftable", 
     "numeric")) 
 {
-    class <- match.arg(class)
-    if (!(class %in% c("data.frame","table","numeric")))
-        stop("gRaven does not yet handle class = ", class)
+class <- match.arg(class)
 z<-querygrain(domain$net, nodes, "joint", exclude = FALSE, evidence = domain$net$cache)
 z<-aperm(z,nodes)
 res<-switch(class,
@@ -288,12 +286,12 @@ data.frame={
 	for (node in nodes) {
 		res[[node]] <- get.states(domain, node)[as.integer(res[[node]])]
 		}
-res
-},
+      res},
 table=z,
+ftable=if(length(nodes)>1) ftable(z, row.vars = nodes[1:floor((length(nodes)+1)/2)]) else z,
 numeric=as.vector(z)
 )
-    list(table = res)
+list(table = res)
 }
 
 get.belief<-function(domain,nodes)
@@ -324,6 +322,7 @@ get.normalization.constant<-function(domain,log=FALSE)
 	if(!is.null(domain$net$cache))
 		{
 		if(!is.null(domain$net$evidence))
+# C&E (if both hold evidence on a node, E dominates)
 			{
 			e<-domain$net$evidence$evi_weight
 			for(i in 1:length(e))
@@ -335,13 +334,14 @@ get.normalization.constant<-function(domain,log=FALSE)
 			}
 		p<-pEvidence(domain$net,evidence=domain$net$cache)		
 		} else if(is.null(domain$net$evidence)) {
+# C only
 		p<-1
 		} else {
+# E only or neither
 		if(domain$net$isPropagated) 
 			p<-pEvidence(domain$net) else
 			{
-			net1<-propagate(domain$net) 
-			p<-pEvidence(net1)
+			p<-pEvidence(propagate(domain$net))
 			}
 		} 
 	if(log) log(p) else p
