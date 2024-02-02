@@ -18,4 +18,5 @@ Description: Wrappers for functions in the 'gRain' package to emulate some 'RHug
 License: GPL (>=2)
 Depends: gRain (>= 1.3.12)
 Imports: gRbase, methods, rlang
-
+URL: https://github.com/petergreen5678/gRaven/
+BugReports: https://github.com/petergreen5678/gRaven/issues
